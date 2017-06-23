@@ -172,7 +172,6 @@ def showWelcomeAnimation():
                     'playerIndexGen': playerIndexGen,
                 }
         '''
-        SOUNDS['wing'].play()
         return {
             'playery': playery + playerShmVals['val'],
             'basex': basex,
@@ -246,13 +245,11 @@ def mainGame(movementInfo):
                 if playery > -2 * IMAGES['player'][0].get_height():
                     playerVelY = playerFlapAcc
                     playerFlapped = True
-                    SOUNDS['wing'].play()
 
         if  bot.act(-playerx + myPipe['x'], - playery + myPipe['y'], playerVelY ):
             if playery > -2 * IMAGES['player'][0].get_height():
                 playerVelY = playerFlapAcc
                 playerFlapped = True
-                SOUNDS['wing'].play()
 
         # check for crash here
         crashTest = checkCrash({'x': playerx, 'y': playery, 'index': playerIndex},
@@ -277,7 +274,6 @@ def mainGame(movementInfo):
             pipeMidPos = pipe['x'] + IMAGES['pipe'][0].get_width() / 2
             if pipeMidPos <= playerMidPos < pipeMidPos + 4:
                 score += 1
-                SOUNDS['point'].play()
 
         # playerIndex basex change
         if (loopIter + 1) % 3 == 0:
@@ -343,10 +339,6 @@ def showGameOverScreen(crashInfo):
     upperPipes, lowerPipes = crashInfo['upperPipes'], crashInfo['lowerPipes']
 
     # play hit and die sounds
-    SOUNDS['hit'].play()
-    if not crashInfo['groundCrash']:
-        SOUNDS['die'].play()
-
     while True:
         ''' De-activated press key functionality
         for event in pygame.event.get():
